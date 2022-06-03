@@ -8,7 +8,7 @@ export class CreateGeneroUseCase {
     async execute({ nome }: CreateGeneroDTO): Promise<Genero>
     {
 
-        const generoExists = await prisma.genero.findUnique(
+        const generoExists = await prisma.genero.findFirst(
             {
                 where: {
                     nome
@@ -19,6 +19,16 @@ export class CreateGeneroUseCase {
         if (generoExists) {
             throw  new AppError("Este Genero já existe")
         }
+
+        const genero = prisma.genero.create(
+            {
+                data: {
+                    nome
+                }
+            }
+        );
+
+        return genero;
     }
 
 }
