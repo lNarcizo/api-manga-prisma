@@ -11,6 +11,6 @@ const userRoutes = Router();
 
 userRoutes.post("/cadastro", createUserController.handle);
 userRoutes.get("/listar-todos", listUserController.handle);
-userRoutes.get("/listar-um", listOneUserController.handle);
+userRoutes.get("/lista-um", listOneUserController.handle);
 
 export { userRoutes };
