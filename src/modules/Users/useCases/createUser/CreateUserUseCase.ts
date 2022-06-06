@@ -2,6 +2,7 @@ import {CreateUserDTO} from "../../dtos/CreateUserDTO";
 import {prisma} from "../../../../prisma/client";
 import { User } from "@prisma/client";
 import {AppError} from "../../../../errors/AppError";
+const bcrypt = require("bcryptjs");
 
 export class CreateUserUseCase {
 
@@ -18,6 +19,8 @@ export class CreateUserUseCase {
         if (userExists) {
             throw new AppError("Este email já foi usado para cadastro!");
         }
+
+        password = await bcrypt.hash(password, 8);
 
         const user = prisma.user.create(
             {
