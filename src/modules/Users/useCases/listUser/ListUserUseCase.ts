@@ -4,7 +4,7 @@ import {User} from "@prisma/client";
 
 export class ListUserUseCase {
 
-    async execute()
+    async execute(): Promise<User[]>
     {
         const users = await prisma.user.findMany();
 
