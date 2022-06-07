@@ -19,7 +19,7 @@ export class DeleteUserUseCase {
             throw new AppError("Usuário não existe");
         }
 
-        const deletedUser = prisma.user.delete(
+        const deletedUser = await prisma.user.delete(
             {
                 where: {
                     id

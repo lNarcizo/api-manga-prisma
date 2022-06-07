@@ -20,7 +20,7 @@ export class CreateGeneroUseCase {
             throw  new AppError("Este Genero já existe")
         }
 
-        const genero = prisma.genero.create(
+        const genero = await prisma.genero.create(
             {
                 data: {
                     nome

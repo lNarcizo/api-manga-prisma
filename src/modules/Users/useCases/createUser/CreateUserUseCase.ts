@@ -22,7 +22,7 @@ export class CreateUserUseCase {
 
         password = await bcrypt.hash(password, 8);
 
-        const user = prisma.user.create(
+        const user = await prisma.user.create(
             {
                 data: {
                     nome,
