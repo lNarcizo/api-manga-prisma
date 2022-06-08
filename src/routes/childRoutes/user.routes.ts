@@ -4,6 +4,10 @@ import {ListUserController} from "../../modules/Users/useCases/listUser/ListUser
 import {ListOneUserController} from "../../modules/Users/useCases/listOneUser/ListOneUserController";
 import {UpdateUserController} from "../../modules/Users/useCases/updateUser/UpdateUserController";
 import {DeleteUserController} from "../../modules/Users/useCases/deleteUser/DeleteUserController";
+import {CreateUserRequest} from "../../requests/userRequests/CreateUserRequest";
+import {ListOneUserRequest} from "../../requests/userRequests/ListOneUserRequest";
+import {UpdateUserRequest} from "../../requests/userRequests/UpdateUserRequest";
+import {DeleteUserRequest} from "../../requests/userRequests/DeleteUserRequest";
 
 const createUserController = new CreateUserController();
 const listUserController = new ListUserController();
@@ -13,10 +17,10 @@ const deleteUserController = new DeleteUserController();
 
 const userRoutes = Router();
 
-userRoutes.post("/cadastro", createUserController.handle);
+userRoutes.post("/cadastro", CreateUserRequest, createUserController.handle);
 userRoutes.get("/listar-todos", listUserController.handle);
-userRoutes.get("/lista-um", listOneUserController.handle);
-userRoutes.put("/edicao", updateUserController.handle);
-userRoutes.delete("/excluir", deleteUserController.handle);
+userRoutes.get("/lista-um", ListOneUserRequest, listOneUserController.handle);
+userRoutes.put("/edicao", UpdateUserRequest, updateUserController.handle);
+userRoutes.delete("/excluir", DeleteUserRequest, deleteUserController.handle);
 
 export { userRoutes };
