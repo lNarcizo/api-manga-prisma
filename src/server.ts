@@ -1,7 +1,8 @@
 import "express-async-errors";
-import express, {NextFunction, Request, Response} from 'express';
+import express from 'express';
 import {routes} from "./routes";
-import {AppError} from "./errors/AppError";
+import { exceptionsHandler } from "./errors/ExceptionsHandler";
+import { notFound } from "./errors/NotFound";
 
 const app = express();
 
@@ -9,23 +10,8 @@ app.use(express.json());
 
 app.use(routes);
 
-app.use((err: Error, req: Request, res:Response, next: NextFunction)=> {
-    if (err instanceof AppError) {
-        return res.status(err.statusCode).json(
-            {
-                error: true,
-                message: err.message
-            }
-        );
-    }
-
-    return res.status(500).json(
-        {
-            error: true,
-            message: `Internal server error: ${err.message}`
-        }
-    );
-});
+app.use(exceptionsHandler);
+app.use(notFound);
 
 const port = process.env.PORT || 3333;
 
