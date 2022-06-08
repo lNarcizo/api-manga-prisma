@@ -10,7 +10,7 @@ export const exceptionsHandler = (
 ) => {
     if (error instanceof AppError) {
         return response.status(error.statusCode).json({
-            error: true,
+            status: 'error',
             message: error.message,
         });
     }
