@@ -11,6 +11,11 @@ export class UpdateUserController {
 
         const result = await updateUserUseCase.execute({id, nome, email});
 
-        return  res.status(200).json(result);
+        const resultData = {
+            "updated" : true,
+            "data": result
+        }
+
+        return  res.status(200).json(resultData);
     }
 }

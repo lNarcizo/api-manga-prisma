@@ -11,6 +11,11 @@ export class UpdateGeneroController {
 
         const result = await updateGeneroUseCase.execute({id, nome});
 
-        return res.status(200).json(result);
+        const resultData = {
+            "updated": true,
+            "data": result
+        }
+
+        return res.status(200).json(resultData);
     }
 }
