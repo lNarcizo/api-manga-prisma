@@ -5,12 +5,12 @@ import {User} from "@prisma/client";
 
 export class ListOneUserUseCase {
 
-    async execute({ email }: ListOneUserDTO): Promise<User>
+    async execute({ id }: ListOneUserDTO): Promise<User>
     {
         const user = await prisma.user.findUnique(
             {
                 where: {
-                    email
+                    id
                 }
             }
 

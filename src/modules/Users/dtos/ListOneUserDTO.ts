@@ -1,3 +1,3 @@
 export interface ListOneUserDTO {
-    email: string;
+    id: number;
 }

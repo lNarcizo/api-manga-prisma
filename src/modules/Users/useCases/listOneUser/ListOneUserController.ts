@@ -5,11 +5,11 @@ export class ListOneUserController {
 
     async handle(req: Request, res: Response)
     {
-        const { email } = req.body;
+        const { id } = req.body;
 
         const listOneUserUseCase = new ListOneUserUseCase();
 
-        const result = await listOneUserUseCase.execute({email});
+        const result = await listOneUserUseCase.execute({id});
 
         return res.status(200).json(result);
     }
